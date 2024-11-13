@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model comments {
+  id           Int       @id @default(autoincrement())
+  job_id       Int?
+  commenter_id Int?
+  comment_date DateTime? @db.DateTime(0)
+  content      String?   @db.Text
+  comment_star Int?
+  jobs         jobs?     @relation(fields: [job_id], references: [id], onDelete: Cascade, map: "comments_ibfk_1")
+  users        users?    @relation(fields: [commenter_id], references: [id], onDelete: Cascade, map: "comments_ibfk_2")
+
+  @@index([commenter_id], map: "commenter_id")
+  @@index([job_id], map: "job_id")
+}
+
+model job_categories {
+  id                   Int                    @id @default(autoincrement())
+  job_category_name    String?                @db.VarChar(255)
+  job_category_details job_category_details[]
+}
+
+model job_category_details {
+  id              Int             @id @default(autoincrement())
+  detail_name     String?         @db.VarChar(255)
+  image           String?         @db.VarChar(255)
+  job_category_id Int?
+  job_categories  job_categories? @relation(fields: [job_category_id], references: [id], onDelete: Cascade, map: "job_category_details_ibfk_1")
+  jobs            jobs[]
+
+  @@index([job_category_id], map: "job_category_id")
+}
+
+model job_rentals {
+  id          Int       @id @default(autoincrement())
+  job_id      Int?
+  renter_id   Int?
+  rental_date DateTime? @db.DateTime(0)
+  completed   Boolean?
+  jobs        jobs?     @relation(fields: [job_id], references: [id], onDelete: Cascade, map: "job_rentals_ibfk_1")
+  users       users?    @relation(fields: [renter_id], references: [id], onDelete: Cascade, map: "job_rentals_ibfk_2")
+
+  @@index([job_id], map: "job_id")
+  @@index([renter_id], map: "renter_id")
+}
+
+model jobs {
+  id                     Int                   @id @default(autoincrement())
+  job_name               String?               @db.VarChar(255)
+  rating                 Int?
+  price                  Int?
+  image                  String?               @db.VarChar(255)
+  description            String?               @db.Text
+  short_description      String?               @db.VarChar(255)
+  job_star               Int?
+  job_category_detail_id Int?
+  creator_id             Int?
+  comments               comments[]
+  job_rentals            job_rentals[]
+  job_category_details   job_category_details? @relation(fields: [job_category_detail_id], references: [id], map: "jobs_ibfk_1")
+  users                  users?                @relation(fields: [creator_id], references: [id], map: "jobs_ibfk_2")
+
+  @@index([creator_id], map: "creator_id")
+  @@index([job_category_detail_id], map: "job_category_detail_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id            Int           @id @default(autoincrement())
+  name          String?       @db.VarChar(255)
+  email         String?       @unique(map: "email") @db.VarChar(255)
+  password      String?       @db.VarChar(255)
+  phone         String?       @db.VarChar(20)
+  birth_day     DateTime?     @db.Date
+  gender        String?       @db.VarChar(10)
+  role          String?       @db.VarChar(50)
+  skill         String?       @db.VarChar(255)
+  certification String?       @db.VarChar(255)
+  comments      comments[]
+  job_rentals   job_rentals[]
+  jobs          jobs[]
+}
