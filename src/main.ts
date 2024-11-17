@@ -7,7 +7,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-
+  
   // add validation
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   const configSwagger = new DocumentBuilder()
