@@ -1,4 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateLoaiCongViecDto } from './dto/create-loai-cong-viec.dto';
 import { UpdateLoaiCongViecDto } from './dto/update-loai-cong-viec.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -47,7 +53,7 @@ export class LoaiCongViecService {
         },
       });
       return {
-        data,
+        content: data,
         pagination: {
           total: await this.prismaService.job_categories.count(),
           page: pageIndex,
@@ -55,19 +61,52 @@ export class LoaiCongViecService {
         },
       };
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} loaiCongViec`;
+  async findOne(id: number) {
+    const data = await this.prismaService.job_categories.findFirst({
+      where: { id },
+    });
+    if (!data) {
+      throw new NotFoundException('Id not found!');
+    }
+    return data;
   }
 
-  update(id: number, updateLoaiCongViecDto: UpdateLoaiCongViecDto) {
-    return `This action updates a #${id} loaiCongViec`;
+  async update(id: number, updateLoaiCongViecDto: UpdateLoaiCongViecDto) {
+    try {
+      const entity = await this.prismaService.job_categories.findFirst({
+        where: { id },
+      });
+      if (!entity) {
+        throw new NotFoundException('job_categories not found');
+      }
+
+      // Update the entity with the provided data
+      await this.prismaService.job_categories.update({
+        where: { id },
+        data: updateLoaiCongViecDto,
+      });
+
+      return true;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} loaiCongViec`;
+  async remove(id: number) {
+    try {
+      const deletedJobCategory = await this.prismaService.job_categories.delete(
+        {
+          where: { id },
+        },
+      );
+
+      return deletedJobCategory;
+    } catch (error) {
+      throw error; // Re-throw the error for general handling
+    }
   }
 }

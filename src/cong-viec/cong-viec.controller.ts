@@ -18,7 +18,6 @@ import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
-import { json } from 'stream/consumers';
 
 interface JwtRequest extends Request {
   user: {

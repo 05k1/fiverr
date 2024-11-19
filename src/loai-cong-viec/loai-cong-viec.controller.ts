@@ -9,13 +9,15 @@ import {
   HttpStatus,
   UseGuards,
   Query,
+  Res,
+  NotFoundException,
 } from '@nestjs/common';
 import { LoaiCongViecService } from './loai-cong-viec.service';
 import { CreateLoaiCongViecDto } from './dto/create-loai-cong-viec.dto';
 import { UpdateLoaiCongViecDto } from './dto/update-loai-cong-viec.dto';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
-import { ResponseCustom } from 'src/types/res.types';
+import { Response } from 'express';
 
 @ApiTags('LoaiCongViec')
 @Controller('/api/loai-cong-viec')
@@ -27,19 +29,13 @@ export class LoaiCongViecController {
   @Post()
   async create(
     @Body() createLoaiCongViecDto: CreateLoaiCongViecDto,
-  ): Promise<ResponseCustom> {
+    @Res() res: Response,
+  ) {
     try {
-      return {
-        statusCode: HttpStatus.CREATED,
-        message: 'Created successfully.',
-        content: this.loaiCongViecService.create(createLoaiCongViecDto),
-      };
+      await this.loaiCongViecService.create(createLoaiCongViecDto);
+      return res.status(HttpStatus.CREATED).json({ message: 'Created!' });
     } catch (error) {
-      return {
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: error,
-        content: null,
-      };
+      res.locals.standardResponse({ data: null, error });
     }
   }
 
@@ -51,41 +47,62 @@ export class LoaiCongViecController {
     @Query('pageIndex') pageIndex: string,
     @Query('pageSize') pageSize: string,
     @Query('keyword') keyword: string,
+    @Res() res: Response,
   ) {
     try {
-      const { data, pagination } = await this.loaiCongViecService.findAll({
+      const response = await this.loaiCongViecService.findAll({
         pageIndex: pageIndex ? +pageIndex : 1,
         pageSize: pageSize ? +pageSize : 10,
         keyword: keyword ?? '',
       });
-      return {
-        content: data,
-        pagination,
-        statusCode: HttpStatus.OK,
-      };
+      return res.status(HttpStatus.OK).json(response);
     } catch (error) {
-      return {
-        error,
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      };
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
     }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.loaiCongViecService.findOne(+id);
+  async findOne(@Param('id') id: string, @Res() res: Response) {
+    try {
+      return res.status(HttpStatus.OK).json({
+        data: await this.loaiCongViecService.findOne(+id),
+        message: 'Successfully!',
+      });
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        return res.status(HttpStatus.NOT_FOUND).json(error);
+      }
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
+    }
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateLoaiCongViecDto: UpdateLoaiCongViecDto,
+    @Res() res: Response,
   ) {
-    return this.loaiCongViecService.update(+id, updateLoaiCongViecDto);
+    try {
+      const data = await this.loaiCongViecService.update(
+        +id,
+        updateLoaiCongViecDto,
+      );
+      return res.status(HttpStatus.OK).json({ message: 'Updated!' });
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        return res.status(HttpStatus.NOT_FOUND).json(error);
+      }
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error);
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.loaiCongViecService.remove(+id);
+  async remove(@Param('id') id: string, @Res() res: Response) {
+    try {
+      await this.loaiCongViecService.remove(+id);
+      return res.status(HttpStatus.OK).json({ data: [], message: 'Deleted!' });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
+    }
   }
 }
