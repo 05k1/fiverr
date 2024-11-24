@@ -1,23 +1,22 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { CreateCongViecDto } from './dto/create-cong-viec.dto';
 import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-
+import { CongViecDto } from './dto/cong-viec.dto';
+import { Pagination } from 'src/utils/type/Pagination.interface';
 
 @Injectable()
 export class CongViecService {
   constructor(private readonly prismaService: PrismaService) {}
   async create(createCongViecDto: CreateCongViecDto) {
-    try {
-      return await this.prismaService.jobs.create({
-        data: createCongViecDto,
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
+    const data = await this.prismaService.jobs.create({
+      data: createCongViecDto,
+    });
+    return data;
   }
 
   async findAll() {
@@ -30,20 +29,32 @@ export class CongViecService {
   }
 
   async findOne(id: number) {
-    return await this.prismaService.jobs.findFirst({ where: { id } });
+    const data = await this.prismaService.jobs.findFirst({
+      where: { id: id },
+    });
+    if (!data) {
+      throw new NotFoundException('Id not found.');
+    }
+    return data;
   }
 
   async update(id: number, updateCongViecDto: UpdateCongViecDto) {
-    return await this.prismaService.jobs.update({
+    const item = await this.findOne(id);
+    if (!item) {
+      throw new NotFoundException('Id not found.');
+    }
+
+    const data = await this.prismaService.jobs.update({
       where: { id },
       data: updateCongViecDto,
     });
+    return data;
   }
 
   async remove(id: number) {
     const jobItem = await this.prismaService.jobs.findFirst({ where: { id } });
     if (!jobItem) {
-      throw new BadRequestException('Job item with ID not found.');
+      throw new NotFoundException('Job item with ID not found.');
     }
     return await this.prismaService.jobs.delete({ where: { id } });
   }
@@ -56,15 +67,12 @@ export class CongViecService {
     pageIndex: number;
     pageSize: number;
     keyword: string;
-  }) {
-    if (isNaN(pageIndex) || isNaN(pageSize) || pageIndex < 1 || pageSize < 1) {
-      throw new Error('Invalid page number or page size');
-    }
+  }): Promise<{ data: CongViecDto[]; pagination?: Pagination }> {
     const skip = (pageIndex - 1) * pageSize;
     const take = pageSize;
 
     try {
-      const data = await this.prismaService.jobs.findMany({
+      const data: CongViecDto[] = await this.prismaService.jobs.findMany({
         where: keyword
           ? {
               OR: [
@@ -92,9 +100,26 @@ export class CongViecService {
           job_name: 'asc',
         },
       });
-      return data;
+
+      return {
+        data,
+        pagination: {
+          total: await this.prismaService.jobs.count(),
+          page: pageIndex,
+          pageSize,
+        },
+      };
     } catch (error) {
       throw new Error(error.message);
     }
+  }
+
+  async getMenuJob() {
+    const data = await this.prismaService.job_category_details.findMany({
+      include: {
+        job_categories: true,
+      },
+    });
+    return data;
   }
 }

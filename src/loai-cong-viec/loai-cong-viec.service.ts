@@ -53,7 +53,7 @@ export class LoaiCongViecService {
         },
       });
       return {
-        content: data,
+        data,
         pagination: {
           total: await this.prismaService.job_categories.count(),
           page: pageIndex,
