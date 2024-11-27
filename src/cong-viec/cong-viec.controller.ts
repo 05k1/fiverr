@@ -5,14 +5,11 @@ import {
   Body,
   Param,
   Delete,
-  Res,
   HttpStatus,
   UseGuards,
   Req,
   Put,
   Query,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CongViecService } from './cong-viec.service';
 import { CreateCongViecDto } from './dto/create-cong-viec.dto';
@@ -23,16 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ResponseData } from 'src/utils/globalClass';
 import { HttpMessage } from 'src/utils/globalEnum';
 import { CongViecDto } from './dto/cong-viec.dto';
-
-interface JwtRequest extends Request {
-  user: {
-    data: {
-      userId: number;
-    };
-    iat: number;
-    exp: number;
-  };
-}
+import { JwtRequest } from 'src/utils/type/Pagination.interface';
 
 @Controller('/api/cong-viec')
 @ApiTags('CongViec')
@@ -119,7 +107,7 @@ export class CongViecController {
       ...updateCongViecDto,
       creator_id: userId,
     });
-    return new ResponseData(data, HttpStatus.OK, HttpMessage.SUCCESS);
+    return new ResponseData(data, HttpStatus.OK, HttpMessage.UPDATE);
   }
 
   @Delete(':id')

@@ -7,7 +7,7 @@ import { CreateCongViecDto } from './dto/create-cong-viec.dto';
 import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CongViecDto } from './dto/cong-viec.dto';
-import { Pagination } from 'src/utils/type/Pagination.interface';
+import { Pagination, ParamsGetList } from 'src/utils/type/Pagination.interface';
 
 @Injectable()
 export class CongViecService {
@@ -33,7 +33,7 @@ export class CongViecService {
       where: { id: id },
     });
     if (!data) {
-      throw new NotFoundException('Id not found.');
+      throw new NotFoundException('Job id not found.');
     }
     return data;
   }
@@ -41,7 +41,7 @@ export class CongViecService {
   async update(id: number, updateCongViecDto: UpdateCongViecDto) {
     const item = await this.findOne(id);
     if (!item) {
-      throw new NotFoundException('Id not found.');
+      throw new NotFoundException('Job id not found.');
     }
 
     const data = await this.prismaService.jobs.update({
@@ -63,11 +63,7 @@ export class CongViecService {
     pageIndex,
     pageSize,
     keyword,
-  }: {
-    pageIndex: number;
-    pageSize: number;
-    keyword: string;
-  }): Promise<{ data: CongViecDto[]; pagination?: Pagination }> {
+  }: ParamsGetList): Promise<{ data: CongViecDto[]; pagination?: Pagination }> {
     const skip = (pageIndex - 1) * pageSize;
     const take = pageSize;
 

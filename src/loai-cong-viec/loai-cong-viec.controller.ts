@@ -67,16 +67,12 @@ export class LoaiCongViecController {
       +id,
       updateLoaiCongViecDto,
     );
-    return new ResponseData(data, HttpStatus.OK, HttpMessage.SUCCESS);
+    return new ResponseData(data, HttpStatus.OK, HttpMessage.UPDATE);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string, @Res() res: Response) {
-    try {
-      await this.loaiCongViecService.remove(+id);
-      return res.status(HttpStatus.OK).json({ data: [], message: 'Deleted!' });
-    } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
-    }
+  async remove(@Param('id') id: string) {
+    const data = await this.loaiCongViecService.remove(+id);
+    return new ResponseData(data, HttpStatus.OK, HttpMessage.DELETE);
   }
 }

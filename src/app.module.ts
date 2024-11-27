@@ -6,6 +6,7 @@ import { CongViecModule } from './cong-viec/cong-viec.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { LoaiCongViecModule } from './loai-cong-viec/loai-cong-viec.module';
+import { ThueCongViecModule } from './thue-cong-viec/thue-cong-viec.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { LoaiCongViecModule } from './loai-cong-viec/loai-cong-viec.module';
     CongViecModule,
     JwtModule.register({}),
     LoaiCongViecModule,
+    ThueCongViecModule,
   ],
   providers: [JwtStrategy],
 })

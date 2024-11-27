@@ -8,6 +8,7 @@ import {
 import { CreateLoaiCongViecDto } from './dto/create-loai-cong-viec.dto';
 import { UpdateLoaiCongViecDto } from './dto/update-loai-cong-viec.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { ParamsGetList } from 'src/utils/type/Pagination.interface';
 
 @Injectable()
 export class LoaiCongViecService {
@@ -18,15 +19,7 @@ export class LoaiCongViecService {
     });
   }
 
-  async findAll({
-    pageIndex,
-    pageSize,
-    keyword,
-  }: {
-    pageIndex: number;
-    pageSize: number;
-    keyword: string;
-  }) {
+  async findAll({ pageIndex, pageSize, keyword }: ParamsGetList) {
     if (isNaN(pageIndex) || isNaN(pageSize) || pageIndex < 1 || pageSize < 1) {
       throw new Error('Invalid page number or page size');
     }
@@ -77,20 +70,15 @@ export class LoaiCongViecService {
 
   async update(id: number, updateLoaiCongViecDto: UpdateLoaiCongViecDto) {
     try {
-      const entity = await this.prismaService.job_categories.findFirst({
-        where: { id },
-      });
-      if (!entity) {
-        throw new NotFoundException('job_categories not found');
-      }
+      await this.findOne(id);
 
       // Update the entity with the provided data
-      await this.prismaService.job_categories.update({
+      const data = await this.prismaService.job_categories.update({
         where: { id },
         data: updateLoaiCongViecDto,
       });
 
-      return true;
+      return data;
     } catch (error) {
       throw error;
     }
@@ -98,13 +86,12 @@ export class LoaiCongViecService {
 
   async remove(id: number) {
     try {
-      const deletedJobCategory = await this.prismaService.job_categories.delete(
-        {
-          where: { id },
-        },
-      );
+      await this.findOne(id);
+      await this.prismaService.job_categories.delete({
+        where: { id },
+      });
 
-      return deletedJobCategory;
+      return null;
     } catch (error) {
       throw error; // Re-throw the error for general handling
     }

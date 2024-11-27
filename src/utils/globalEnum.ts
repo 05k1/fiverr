@@ -1,6 +1,7 @@
 export enum HttpMessage {
   ERROR = 'Server Internal Error.',
   SUCCESS = 'Successfully.',
-  CREATE = 'Resource created successfully.',
-  DELETE = 'Deleted successfully',
+  CREATE = 'Create successfully!',
+  DELETE = 'Deleted successfully.',
+  UPDATE = 'Update successful!',
 }
