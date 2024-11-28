@@ -71,7 +71,7 @@ export class AuthService {
     const token = this.jwtService.sign(
       { data: { userId: checkEmail.id } },
       {
-        expiresIn: '30m',
+        expiresIn: '30d',
         secret: this.configService.get<string>('SECRET_KEY'),
       },
     );
