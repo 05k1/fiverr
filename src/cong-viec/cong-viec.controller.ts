@@ -15,7 +15,6 @@ import { CongViecService } from './cong-viec.service';
 import { CreateCongViecDto } from './dto/create-cong-viec.dto';
 import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
 import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { ResponseData } from 'src/utils/globalClass';
 import { HttpMessage } from 'src/utils/globalEnum';
@@ -50,7 +49,7 @@ export class CongViecController {
   async findAll() {
     const data = await this.congViecService.findAll();
     return new ResponseData<CongViecDto[]>(
-      { data },
+      data,
       HttpStatus.OK,
       HttpMessage.SUCCESS,
     );

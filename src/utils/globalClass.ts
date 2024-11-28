@@ -3,13 +3,13 @@ import { Pagination } from './type/Pagination.interface';
 
 export class ResponseData<T> {
   constructor(
-    public content:
-      | { data: T | T[] | null; pagination?: Pagination }
-      | T
-      | T[]
-      | null,
+    public content: ListAllDto<T> | T | T[] | null,
     public statusCode: HttpStatus,
     public message: string,
-    public pagination?: Pagination,
   ) {}
+}
+
+export interface ListAllDto<T> {
+  data: T[];
+  pagination: Pagination;
 }

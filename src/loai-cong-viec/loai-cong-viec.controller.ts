@@ -3,14 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   HttpStatus,
   UseGuards,
   Query,
-  Res,
-  NotFoundException,
   Put,
 } from '@nestjs/common';
 import { LoaiCongViecService } from './loai-cong-viec.service';
@@ -18,9 +15,9 @@ import { CreateLoaiCongViecDto } from './dto/create-loai-cong-viec.dto';
 import { UpdateLoaiCongViecDto } from './dto/update-loai-cong-viec.dto';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
-import { Response } from 'express';
-import { ResponseData } from 'src/utils/globalClass';
-import { HttpMessage } from 'src/utils/globalEnum';
+import { ResponseData } from '../utils/globalClass';
+import { HttpMessage } from '../utils/globalEnum';
+import { LoaiCongViecDto } from './dto/loai-cong-viec.dto';
 
 @ApiTags('LoaiCongViec')
 @Controller('/api/loai-cong-viec')
@@ -53,7 +50,9 @@ export class LoaiCongViecController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(
+    @Param('id') id: string,
+  ): Promise<ResponseData<LoaiCongViecDto>> {
     const data = await this.loaiCongViecService.findOne(+id);
     return new ResponseData(data, HttpStatus.OK, HttpMessage.SUCCESS);
   }
@@ -62,7 +61,7 @@ export class LoaiCongViecController {
   async update(
     @Param('id') id: string,
     @Body() updateLoaiCongViecDto: UpdateLoaiCongViecDto,
-  ) {
+  ): Promise<ResponseData<LoaiCongViecDto>> {
     const data = await this.loaiCongViecService.update(
       +id,
       updateLoaiCongViecDto,
@@ -71,7 +70,7 @@ export class LoaiCongViecController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string): Promise<ResponseData<any>> {
     const data = await this.loaiCongViecService.remove(+id);
     return new ResponseData(data, HttpStatus.OK, HttpMessage.DELETE);
   }

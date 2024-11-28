@@ -4,6 +4,8 @@ import { UpdateThueCongViecDto } from './dto/update-thue-cong-viec.dto';
 import { ParamsGetList } from 'src/utils/type/Pagination.interface';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CongViecService } from 'src/cong-viec/cong-viec.service';
+import { ListAllDto } from 'src/utils/globalClass';
+import { ThueCongViecDto } from './dto/thue-cong-viec.dto';
 
 @Injectable()
 export class ThueCongViecService {
@@ -11,7 +13,9 @@ export class ThueCongViecService {
     private readonly prismaService: PrismaService,
     private readonly congViecService: CongViecService,
   ) {}
-  async create(createThueCongViecDto: CreateThueCongViecDto) {
+  async create(
+    createThueCongViecDto: CreateThueCongViecDto,
+  ): Promise<ThueCongViecDto> {
     try {
       await this.congViecService.findOne(createThueCongViecDto.job_id);
 
@@ -30,7 +34,7 @@ export class ThueCongViecService {
     }
   }
 
-  async findAll() {
+  async findAll(): Promise<ThueCongViecDto[]> {
     try {
       const data = await this.prismaService.job_rentals.findMany({});
       return data;
@@ -39,7 +43,11 @@ export class ThueCongViecService {
     }
   }
 
-  async findAllParams({ pageIndex, pageSize, keyword }: ParamsGetList) {
+  async findAllParams({
+    pageIndex,
+    pageSize,
+    keyword,
+  }: ParamsGetList): Promise<ListAllDto<ThueCongViecDto>> {
     const skip = (pageIndex - 1) * pageSize;
     const take = pageSize;
 
@@ -78,7 +86,7 @@ export class ThueCongViecService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<ThueCongViecDto> {
     const data = await this.prismaService.job_rentals.findFirst({
       where: { id },
     });
@@ -88,7 +96,10 @@ export class ThueCongViecService {
     return data;
   }
 
-  async update(id: number, updateThueCongViecDto: UpdateThueCongViecDto) {
+  async update(
+    id: number,
+    updateThueCongViecDto: UpdateThueCongViecDto,
+  ): Promise<ThueCongViecDto> {
     await this.findOne(id);
     await this.congViecService.findOne(updateThueCongViecDto.job_id);
     const data = await this.prismaService.job_rentals.update({
@@ -130,7 +141,7 @@ export class ThueCongViecService {
     }
   }
 
-  async completeJob(id: number) {
+  async completeJob(id: number): Promise<ThueCongViecDto> {
     try {
       await this.findOne(id);
       const data = await this.prismaService.job_rentals.update({

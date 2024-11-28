@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Query,
@@ -21,6 +20,8 @@ import { HttpMessage } from 'src/utils/globalEnum';
 import { JwtRequest } from 'src/utils/type/Pagination.interface';
 import { AuthGuard } from '@nestjs/passport';
 
+@ApiBearerAuth()
+@UseGuards(AuthGuard('jwt'))
 @Controller('/api/thue-cong-viec')
 export class ThueCongViecController {
   constructor(private readonly thueCongViecService: ThueCongViecService) {}
@@ -28,8 +29,7 @@ export class ThueCongViecController {
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Post('/hoan-thanh-cong-viec/:id')
-  async completeJob(@Req() req: JwtRequest, @Param('id') id: string) {
-    const { userId } = req.user.data;
+  async completeJob(@Param('id') id: string) {
     const data = await this.thueCongViecService.completeJob(+id);
 
     return new ResponseData(data, HttpStatus.OK, HttpMessage.UPDATE);
