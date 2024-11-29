@@ -84,6 +84,7 @@ model users {
   role          String?       @db.VarChar(50)
   skill         String?       @db.VarChar(255)
   certification String?       @db.VarChar(255)
+  avatar        String?       @db.VarChar(255)
   comments      comments[]
   job_rentals   job_rentals[]
   jobs          jobs[]

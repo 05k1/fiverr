@@ -10,18 +10,27 @@ import {
   Put,
   UseGuards,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Response } from 'express';
 import { UserDto } from './dto/user.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { FileUploadDto } from 'src/shared/dto/files-upload.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { CloudUploadService } from 'src/shared/cloudUpload.service';
+import { UploadApiErrorResponse } from 'cloudinary';
 
 @Controller('api/user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly cloudUploadService: CloudUploadService,
+  ) {}
 
   @Post()
   async create(
@@ -118,6 +127,29 @@ export class UserController {
       return res
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .json({ message: error.message });
+    }
+  }
+
+  @Post('/upload-avatar/:id')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    type: FileUploadDto,
+    required: true,
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadJobImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+    @Res() res: Response,
+  ) {
+    try {
+      await this.userService.findOne(+id);
+      const result: UploadApiErrorResponse =
+        await this.cloudUploadService.uploadImage(file, 'jobs');
+      const data = await this.userService.uploadAvatar(result, +id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (error) {
+      throw error;
     }
   }
 }

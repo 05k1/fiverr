@@ -24,6 +24,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     BinhLuanModule,
     ChiTietLoaiCongViecModule,
     CloudinaryModule,
+    UserModule,
   ],
   providers: [JwtStrategy],
 })

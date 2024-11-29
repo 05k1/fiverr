@@ -9,6 +9,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserDto } from './dto/user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { UploadApiErrorResponse } from 'cloudinary';
 
 @Injectable()
 export class UserService {
@@ -172,5 +173,17 @@ export class UserService {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async uploadAvatar(file: UploadApiErrorResponse, id: number) {
+    if (!file) {
+      throw new Error('File not found.');
+    }
+    return await this.prismaService.users.update({
+      where: { id },
+      data: {
+        avatar: file.url,
+      },
+    });
   }
 }
