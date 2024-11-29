@@ -4,6 +4,7 @@ import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CongViecDto } from './dto/cong-viec.dto';
 import { Pagination, ParamsGetList } from 'src/utils/type/Pagination.interface';
+import { UploadApiErrorResponse } from 'cloudinary';
 
 @Injectable()
 export class CongViecService {
@@ -113,5 +114,17 @@ export class CongViecService {
       },
     });
     return data;
+  }
+
+  async uploadIamgeJob(file: UploadApiErrorResponse, id: number) {
+    if (!file) {
+      throw new Error('File not found.');
+    }
+    return await this.prismaService.jobs.update({
+      where: { id },
+      data: {
+        image: file.url,
+      },
+    });
   }
 }

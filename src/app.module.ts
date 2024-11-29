@@ -10,6 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { LoaiCongViecModule } from './loai-cong-viec/loai-cong-viec.module';
 import { ThueCongViecModule } from './thue-cong-viec/thue-cong-viec.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ThueCongViecModule } from './thue-cong-viec/thue-cong-viec.module';
     ThueCongViecModule,
     BinhLuanModule,
     ChiTietLoaiCongViecModule,
+    CloudinaryModule,
   ],
   providers: [JwtStrategy],
 })

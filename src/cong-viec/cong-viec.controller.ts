@@ -10,23 +10,63 @@ import {
   Req,
   Put,
   Query,
+  UseInterceptors,
+  UploadedFile,
+  Res,
 } from '@nestjs/common';
 import { CongViecService } from './cong-viec.service';
 import { CreateCongViecDto } from './dto/create-cong-viec.dto';
 import { UpdateCongViecDto } from './dto/update-cong-viec.dto';
-import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { ResponseData } from 'src/utils/globalClass';
 import { HttpMessage } from 'src/utils/globalEnum';
 import { CongViecDto } from './dto/cong-viec.dto';
 import { JwtRequest } from 'src/utils/type/Pagination.interface';
+import { FileUploadDto } from 'src/shared/dto/files-upload.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Response } from 'express';
+import { CloudUploadService } from 'src/shared/cloudUpload.service';
+import { UploadApiErrorResponse } from 'cloudinary';
 
 @Controller('/api/cong-viec')
 @ApiTags('CongViec')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
 export class CongViecController {
-  constructor(private readonly congViecService: CongViecService) {}
+  constructor(
+    private readonly congViecService: CongViecService,
+    private readonly cloudUploadService: CloudUploadService,
+  ) {}
+
+  @Post('/upload-hinh-cong-viec/:id')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    type: FileUploadDto,
+    required: true,
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadJobImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ) {
+    try {
+      await this.congViecService.findOne(+id);
+      const result: UploadApiErrorResponse =
+        await this.cloudUploadService.uploadImage(file, 'jobs');
+      const data = await this.congViecService.uploadIamgeJob(result, +id);
+      return new ResponseData(data, HttpStatus.OK, HttpMessage.UPDATE);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   @Post()
   async create(
