@@ -25,7 +25,17 @@ export class UserService {
 
   async create(body: CreateUserDto): Promise<UserDto> {
     try {
-      const { name, email, password, phone, birth_day, gender } = body;
+      const {
+        name,
+        email,
+        password,
+        phone,
+        birth_day,
+        gender,
+        role,
+        skill,
+        certification,
+      } = body;
       const existUser = await this.prismaService.users.findUnique({
         where: { email },
       });
@@ -45,6 +55,9 @@ export class UserService {
           phone,
           birth_day: new Date(birth_day),
           gender,
+          role,
+          skill: JSON.stringify(skill),
+          certification: JSON.stringify(certification),
         },
       });
       return {
@@ -101,7 +114,6 @@ export class UserService {
       const {
         name,
         email,
-        password,
         phone,
         birth_day,
         gender,
@@ -115,7 +127,6 @@ export class UserService {
         data: {
           name,
           email,
-          password,
           phone,
           birth_day: new Date(birth_day),
           gender,

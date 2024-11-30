@@ -41,14 +41,17 @@ export class CreateUserDto {
   gender: string;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Expose()
   role: string;
 
   @ApiProperty()
+  @IsNotEmpty()
   @Expose()
   skill: string[];
 
   @ApiProperty()
+  @IsNotEmpty()
   @Expose()
   certification: string[];
 }
