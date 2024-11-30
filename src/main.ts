@@ -13,7 +13,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   const configSwagger = new DocumentBuilder()
     .setTitle('Fiverr API')
-    .setDescription('List API')
+    .setDescription('List API fiverr')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
