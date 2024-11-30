@@ -1,0 +1,1263 @@
+{
+	"info": {
+		"_postman_id": "ef8b4be2-e463-4b34-be46-7e6752bd7db2",
+		"name": "Api-Fiverr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21752712",
+		"_collection_link": "https://dark-meadow-250526.postman.co/workspace/6f6a957c-33bc-4327-b38c-65619551a3ec/collection/21752712-ef8b4be2-e463-4b34-be46-7e6752bd7db2?action=share&source=collection_link&creator=21752712"
+	},
+	"item": [
+		{
+			"name": "CongViec",
+			"item": [
+				{
+					"name": "cong-viec",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjA5Nzc1MCwiZXhwIjoxNzMyMDk5NTUwfQ.fZST5MtBfqfvvFSZK-hAOv1s9sI-1_h_TZbccovyGzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cong-viec-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMTY1MCwiZXhwIjoxNzMyNDMzNDUwfQ.3U02Er7lNSCkH-c7IfGWF-vaUV-jpxM6Ki9L5CbSXXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/cong-viec/1",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCongViecQuery",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMDY0OSwiZXhwIjoxNzMyNDMyNDQ5fQ.PfygBKLEnERhioSxhnIM-GBtVBDaRuobnCeIlVuXQuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/cong-viec/phan-trang-tim-kiem?pageIndex=1&pageSize=10&keyword=wid",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "wid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo công việc",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMDY0OSwiZXhwIjoxNzMyNDMyNDQ5fQ.PfygBKLEnERhioSxhnIM-GBtVBDaRuobnCeIlVuXQuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_name\": \"I will edit and enhance your writing\",\r\n  \"rating\": 422,\r\n  \"price\": 35,\r\n  \"image\": \"https://fiverrnew.cybersoft.edu.vn/images/cv4.jpg\",\r\n  \"description\": \"About this gig\\r\\nHi, I am Abhi, a passionate flat graphic designer, and a creative thinker. I have been working on Fiverr for the last 4 years and have successfully developed 50K+ Brand logos and worked for EA Sports, Fiverr Internal communication, etc\\r\\n\\r\\n\\r\\n\\r\\nExclusively Premium, Simple, Minimal, Line art, Typography Brand logo design are here to blow you away.\\r\\n\\r\\nYou are paying a quality gig to receive perfect quality service and design.\\r\\n\\r\\n\\r\\n\\r\\nMy Recent Work Sample: https://flic.kr/s/aHskLztmPf\\r\\n\\r\\n\\r\\n\\r\\nNote: This is a highly recommended gig for line art, monogram, or text-based/badge logo only. This doesn't include Mascot or Complex detailed illustration.\\r\\n\\r\\n\\r\\n\\r\\nWhy me?\\r\\n\\r\\nMost Rated and Trusted Seller\\r\\nReliable and Quick communication\\r\\nPrintable and HQ File size\\r\\nMinimalist Logo and Flat Logo Expert\\r\\n\\r\\n\\r\\nThis gig assures you all the print resolution solutions and a brand face for your company.\\r\\n\\r\\nCopyrights will be with the customer.\\r\\nGet the source and editable files ai,eps,psd,pdf and High-quality files.\",\r\n  \"job_category_detail_id\": 1,\r\n  \"short_description\": \"US$10\\r\\nSave up to 20% with Subscribe to Save\\r\\nBASIC CORPORATE BRAND IDENTITY Business Card + Letterhead + Compliment Design\\r\\n\\r\\n2 Days Delivery\\r\\nUnlimited Revisions\\r\\nIncludes logo design\\r\\nLogo usage guidelines\\r\\nColor palette\\r\\nTypography guidelines\",\r\n  \"job_star\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Công Việc",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMTY1MCwiZXhwIjoxNzMyNDMzNDUwfQ.3U02Er7lNSCkH-c7IfGWF-vaUV-jpxM6Ki9L5CbSXXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"rating\": 0,\r\n  \"price\": 0,\r\n  \"image\": \"string\",\r\n  \"description\": \"string\",\r\n  \"job_category_detail_id\": 1,\r\n  \"short_description\": \"string\",\r\n  \"job_star\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/cong-viec/4",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Công Việc",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMTY1MCwiZXhwIjoxNzMyNDMzNDUwfQ.3U02Er7lNSCkH-c7IfGWF-vaUV-jpxM6Ki9L5CbSXXU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/cong-viec/3",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"cong-viec",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"thanhnha.k13@gmail.com\",\r\n  \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/auth/login",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"yuro\",\r\n  \"email\": \"yuro@gmail.com\",\r\n  \"password\": \"123123\",\r\n  \"phone\": \"string\",\r\n  \"birth_day\": \"2024-11-27T10:08:38.736Z\",\r\n  \"gender\": \"string\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/auth/register",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LoaiCongViec",
+			"item": [
+				{
+					"name": "getList( filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/loai-cong-viec?pageIndex=1",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"loai-cong-viec"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "keyword",
+									"value": "Video",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Loai Cong Viec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/loai-cong-viec/13",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"loai-cong-viec",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Loai Công Việc",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_category_name\": \"Dev FE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/loai-cong-viec/12",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"loai-cong-viec",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Loai Công Việc",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6N30sImlhdCI6MTczMjQzMjQ1NywiZXhwIjoxNzM1MDI0NDU3fQ.prpBRCwykld9qM_xs6vfF3D0UH235RpcrAK8pS-nbiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_category_name\": \"Write Web\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/loai-cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"loai-cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ThueCongViec",
+			"item": [
+				{
+					"name": "get detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/1",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lay-danh-sach-da-thue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OH0sImlhdCI6MTczMjcwMzc2OSwiZXhwIjoxNzM1Mjk1NzY5fQ.St0anA9kYz5OareHYdhihpCOEm8NWKrMlLEHXbbKCvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/lay-danh-sach-da-thue",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"lay-danh-sach-da-thue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/thue-cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OH0sImlhdCI6MTczMjcwMzc2OSwiZXhwIjoxNzM1Mjk1NzY5fQ.St0anA9kYz5OareHYdhihpCOEm8NWKrMlLEHXbbKCvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_id\": 14,\r\n  \"renter_id\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/thue-cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hoan-thanh-cong-viec",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OH0sImlhdCI6MTczMjcwMzc2OSwiZXhwIjoxNzM1Mjk1NzY5fQ.St0anA9kYz5OareHYdhihpCOEm8NWKrMlLEHXbbKCvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_id\": 14,\r\n  \"renter_id\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/hoan-thanh-cong-viec/1000",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"hoan-thanh-cong-viec",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OH0sImlhdCI6MTczMjcwMzc2OSwiZXhwIjoxNzM1Mjk1NzY5fQ.St0anA9kYz5OareHYdhihpCOEm8NWKrMlLEHXbbKCvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_id\": 14,\r\n  \"renter_id\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/8",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OH0sImlhdCI6MTczMjcwMzc2OSwiZXhwIjoxNzM1Mjk1NzY5fQ.St0anA9kYz5OareHYdhihpCOEm8NWKrMlLEHXbbKCvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_id\": 14,\r\n  \"renter_id\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/1000",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phan-trang-tim-kiem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/thue-cong-viec/phan-trang-tim-kiem?pageIndex&pageSize&keyword",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"thue-cong-viec",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": null,
+									"description": "Default value pageIndex = 1"
+								},
+								{
+									"key": "pageSize",
+									"value": null,
+									"description": "Default value pageSize = 10"
+								},
+								{
+									"key": "keyword",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BinhLuan",
+			"item": [
+				{
+					"name": "Get binh luan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/binh-luan",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"binh-luan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get binh luan theo cong viec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/binh-luan/lay-binh-luan-theo-cong-viec/4",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"binh-luan",
+								"lay-binh-luan-theo-cong-viec",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post binh luan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"job_id\": 4,\r\n  \"commenter_id\": 1,\r\n  \"comment_date\": \"2024-11-30T09:03:20.070Z\",\r\n  \"content\": \"string\",\r\n  \"comment_star\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/binh-luan",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"binh-luan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update binh luan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"job_id\": 4,\r\n  \"commenter_id\": 1,\r\n  \"comment_date\": \"2024-11-30T09:03:20.070Z\",\r\n  \"content\": \"string\",\r\n  \"comment_star\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/binh-luan/5",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"binh-luan",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete binh luan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"job_id\": 4,\r\n  \"commenter_id\": 1,\r\n  \"comment_date\": \"2024-11-30T09:03:20.070Z\",\r\n  \"content\": \"string\",\r\n  \"comment_star\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/binh-luan/5",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"binh-luan",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ChiTietLoaiCongViec",
+			"item": [
+				{
+					"name": "Post chi tiet loai cong viec",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"detail_name\": \"design\",\r\n  \"image\": \"string\",\r\n  \"job_category_id\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get chi tiet loai cong viec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get chi tiet loai cong viec theo id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec/3",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get chi tiet loai cong viec phan trang tim kiem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec/phan-trang-tim-kiem?pageIndex=1&pageSize=2&keyword=design",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "keyword",
+									"value": "design"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update chi tiet loai cong viec",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"detail_name\": \"devOps\",\r\n  \"image\": \"string\",\r\n  \"job_category_id\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec/2",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete chi tiet loai cong viec",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/chi-tiet-loai-cong-viec/2",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"chi-tiet-loai-cong-viec",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Post user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"hau\",\r\n  \"email\": \"ab123@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"1234567890\",\r\n  \"birth_day\": \"2024-11-30T09:32:01.211Z\",\r\n  \"gender\": \"male\",\r\n  \"role\": \"user\",\r\n  \"skill\": [\r\n    \"ts\",\r\n    \"js\"\r\n  ],\r\n  \"certification\": [\r\n    \"BE dev\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/user",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"hau\",\r\n  \"email\": \"ab123@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"1234567890\",\r\n  \"birth_day\": \"2024-11-30T09:32:01.211Z\",\r\n  \"gender\": \"male\",\r\n  \"role\": \"user\",\r\n  \"skill\": [\r\n    \"ts\",\r\n    \"js\"\r\n  ],\r\n  \"certification\": [\r\n    \"BE dev\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/user",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user theo id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"hau\",\r\n  \"email\": \"ab123@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"1234567890\",\r\n  \"birth_day\": \"2024-11-30T09:32:01.211Z\",\r\n  \"gender\": \"male\",\r\n  \"role\": \"user\",\r\n  \"skill\": [\r\n    \"ts\",\r\n    \"js\"\r\n  ],\r\n  \"certification\": [\r\n    \"BE dev\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/user/17",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user phan trang tim kiem",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"hau\",\r\n  \"email\": \"ab123@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"1234567890\",\r\n  \"birth_day\": \"2024-11-30T09:32:01.211Z\",\r\n  \"gender\": \"male\",\r\n  \"role\": \"user\",\r\n  \"skill\": [\r\n    \"ts\",\r\n    \"js\"\r\n  ],\r\n  \"certification\": [\r\n    \"BE dev\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/user/phan-trang-tim-kiem?pageIndex=1&pageSize=10&keyword=string",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"tran van hau\",\r\n  \"email\": \"hautran1@gmail.com\",\r\n  \"password\": \"hdsjfhf\",\r\n  \"phone\": \"123\",\r\n  \"birth_day\": \"2024-11-30T10:13:43.116Z\",\r\n  \"gender\": \"male\",\r\n  \"role\": \"user\",\r\n  \"skill\": [\r\n    \"js, rs, nodejs\"\r\n  ],\r\n  \"certification\": [\r\n    \"modejs\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{production}}/user/33",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{production}}/user/19",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6OX0sImlhdCI6MTczMjk1Nzk1MCwiZXhwIjoxNzM1NTQ5OTUwfQ.etk4blptghdlREYGYLEEAIpAXGSwRVLEFjhJ7tcbta4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/MY PC/Downloads/fiverr1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{production}}/user/upload-avatar/16",
+							"host": [
+								"{{production}}"
+							],
+							"path": [
+								"user",
+								"upload-avatar",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "production",
+			"value": "http://103.173.155.73:8081/api",
+			"type": "string"
+		}
+	]
+}
