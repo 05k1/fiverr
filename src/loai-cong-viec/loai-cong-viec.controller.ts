@@ -21,11 +21,11 @@ import { LoaiCongViecDto } from './dto/loai-cong-viec.dto';
 
 @ApiTags('LoaiCongViec')
 @Controller('/api/loai-cong-viec')
+@ApiBearerAuth()
+@UseGuards(AuthGuard('jwt'))
 export class LoaiCongViecController {
   constructor(private readonly loaiCongViecService: LoaiCongViecService) {}
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() createLoaiCongViecDto: CreateLoaiCongViecDto) {
     const data = await this.loaiCongViecService.create(createLoaiCongViecDto);

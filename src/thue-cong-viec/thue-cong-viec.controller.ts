@@ -26,8 +26,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class ThueCongViecController {
   constructor(private readonly thueCongViecService: ThueCongViecService) {}
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
   @Post('/hoan-thanh-cong-viec/:id')
   async completeJob(@Param('id') id: string) {
     const data = await this.thueCongViecService.completeJob(+id);
@@ -35,8 +33,6 @@ export class ThueCongViecController {
     return new ResponseData(data, HttpStatus.OK, HttpMessage.UPDATE);
   }
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() createThueCongViecDto: CreateThueCongViecDto) {
     const data = await this.thueCongViecService.create(createThueCongViecDto);
@@ -67,8 +63,6 @@ export class ThueCongViecController {
     return new ResponseData(data, HttpStatus.OK, HttpMessage.SUCCESS);
   }
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -90,8 +84,6 @@ export class ThueCongViecController {
     );
   }
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
   @Get('/lay-danh-sach-da-thue')
   async getRentedList(@Req() req: JwtRequest) {
     const { userId } = req.user.data;
